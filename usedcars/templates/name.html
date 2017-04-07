@@ -1,0 +1,43 @@
+<h1>Demo usedcars web application</h2>
+<form action="/usedcars/" method="post">
+    {% csrf_token %}
+    <table> 
+    	<tr>
+    		<td>Fuel Type :</td>
+	    	<td>{{ form.fuel_type }}</td>
+    	</tr>
+    	<tr>
+	    	<td>Gear Box :</td>
+	    	<td>{{ form.gear_box }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Vehicle Type :</td>
+	    	<td>{{ form.vehicle_type }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Brand :</td>
+	    	<td>{{ form.brand }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Model :</td>
+	    	<td>{{ form.model }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Damage :</td>
+	    	<td>{{ form.damage }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Year of registration (&ge;):</td>
+	    	<td>{{ form.year_of_registration }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Power (&ge;):</td>
+	    	<td>{{ form.power_ps }}</td>
+	    </tr>
+	    <tr>
+	    	<td>Kilometers (&le;):</td>
+	    	<td>{{ form.kilometers }}</td>
+	    </tr>
+    <table>
+    <input type="submit" value="Submit" />
+</form>

@@ -1,0 +1,38 @@
+<table border="1">
+	<tr>
+		<th>Name :</th>
+		<th>Price :</th>
+		<th>Vehicle type :</th>
+		<th>Year of registration :</th>
+		<th>Gearbox :</th>
+		<th>Power PS :</th>
+		<th>Model :</th>
+		<th>Kilometer :</th>
+		<th>Month of registration :</th>
+		<th>Fuel type :</th>
+		<th>Brand :</th>
+		<th>Not repaired damage :</th>
+		<th>Postal code :</th>
+		<th>Predicted price :</th>
+		<th>Difference (price - predicted price):</th>
+	</tr>
+	{% for entry in results.items %}
+		<tr>
+			{% for x in entry.1.items %}
+				<td>{{ x.1 }}</td>
+			{% endfor %}
+		</tr>
+{% endfor %}
+</table>
+
+<h2>Results: {{no_of_results}}</h2>
+<h2>Params: </hs>
+<div>{{d.fuel_type}}</div>
+<div>{{d.gear_box}}</div>
+<div>{{d.vehicle_type}}</div>
+<div>{{d.brand}}</div>
+<div>{{d.model}}</div>
+<div>{{d.damage}}</div>
+<div>{{d.year_of_registration}}</div>
+<div>{{d.power_ps}}</div>
+<div>{{d.kilometers}}</div>
