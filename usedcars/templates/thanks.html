@@ -1,4 +1,14 @@
-<table border="1">
+{% load staticfiles %}
+{% load humanize %}
+<head>
+<!--	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<table class="table table-hover">
 	<tr>
 		<th>Name :</th>
 		<th>Price :</th>
@@ -19,20 +29,15 @@
 	{% for entry in results.items %}
 		<tr>
 			{% for x in entry.1.items %}
+				{% if x.0 == 'predicted_price' or x.0 == 'difference' %}
+				<td>{{ x.1 | floatformat:2|intcomma }}</td>
+				{% else %}
 				<td>{{ x.1 }}</td>
+				{% endif %}
 			{% endfor %}
 		</tr>
-{% endfor %}
+	{% endfor %}
 </table>
 
 <h2>Results: {{no_of_results}}</h2>
-<h2>Params: </hs>
-<div>{{d.fuel_type}}</div>
-<div>{{d.gear_box}}</div>
-<div>{{d.vehicle_type}}</div>
-<div>{{d.brand}}</div>
-<div>{{d.model}}</div>
-<div>{{d.damage}}</div>
-<div>{{d.year_of_registration}}</div>
-<div>{{d.power_ps}}</div>
-<div>{{d.kilometers}}</div>
+</body>

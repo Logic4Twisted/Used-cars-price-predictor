@@ -331,7 +331,7 @@ DAMAGE = (
 	('Yes', 'Yes'),
 )
 
-class NameForm(forms.Form):
+class InputForm(forms.Form):
 	fuel_type = forms.ChoiceField(choices=FUEL_TYPE, required=True)
 	gear_box = forms.ChoiceField(choices=GEAR_BOX, required=True)
 	vehicle_type = forms.ChoiceField(choices=VEHICLE_TYPE, required=True)

@@ -1,5 +1,14 @@
-<h1>Demo usedcars web application</h2>
-<form action="/usedcars/" method="post">
+{% load staticfiles %}
+{% load humanize %}
+<head>
+<!--	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"> -->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1><center>Demo usedcars web application</center></h1>
+<form action="/usedcars/" method="post" class="bootstrap-frm">
     {% csrf_token %}
     <table> 
     	<tr>
@@ -38,6 +47,10 @@
 	    	<td>Kilometers (&le;):</td>
 	    	<td>{{ form.kilometers }}</td>
 	    </tr>
-    <table>
-    <input type="submit" value="Submit" />
+	    <tr>
+	    	<td></td>
+	    	<td><input type="submit" value="Submit" class="button"/></td>
+	    </tr>
+    </table>
 </form>
+</body>

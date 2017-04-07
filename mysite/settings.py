@@ -15,8 +15,10 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'mysite', 'static', 'static_root')
+
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, '/static/'), # <= don't forget a comma here
+    os.path.join(BASE_DIR, 'mysite', 'static', 'static_dirs'), # <= don't forget a comma here
 )
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +30,7 @@ SECRET_KEY = 'n_sx5&4xf17=!@3ss!lqnhbdd=))tw$@a6+uofn%*50ff7!_h@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ec2-52-58-78-52.eu-central-1.compute.amazonaws.com']
+ALLOWED_HOSTS = ['ec2-52-58-78-52.eu-central-1.compute.amazonaws.com','localhost']
 
 
 # Application definition
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 ]
 
 MIDDLEWARE = [
