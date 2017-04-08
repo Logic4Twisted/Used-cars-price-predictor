@@ -13,8 +13,7 @@ def get_name(request):
 		if form.is_valid():
 			data = form.cleaned_data
 			results = helper(data)
-			form = InputForm()
-			return render(request, 'thanks.html', {'results': results, 'no_of_results': len(results), 'from':form})
+			return render(request, 'thanks.html', {'results': results, 'no_of_results': len(results)})
 
 	# if a GET (or any other method) we'll create a blank form
 	else:
