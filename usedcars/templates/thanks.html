@@ -6,6 +6,12 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<!--
+	Index(['name', 'price', 'vehicleType', 'yearOfRegistration', 'gearbox',
+       'powerPS', 'model', 'kilometer', 'fuelType', 'brand', 'age',
+       'daysOnEbay', 'brandModel', 'vehicleClass', 'predicted_price',
+       'difference'],
+	-->
 <body>
 <a href="/usedcars/">
 	<button type="button" > &lt;&lt; Return to search</button>
@@ -30,15 +36,24 @@
 		<th>Predicted price</th>
 		<th>Difference (price - predicted price)</th>
 	</tr>
-	{% for entry in results.items %}
+	{% for key, row in results.items %}
 		<tr>
-			{% for x in entry.1.items %}
-				{% if x.0 == 'predicted_price' or x.0 == 'difference' %}
-				<td>{{ x.1 | floatformat:2|intcomma }}</td>
-				{% else %}
-				<td>{{ x.1 }}</td>
-				{% endif %}
-			{% endfor %}
+			<td>{{ row.name }}</td>
+			<td>{{ row.price | floatformat:2|intcomma}}</td>
+			<td>{{ row.vehicleType }}</td>
+			<td>{{ row.yearOfRegistration}}</td>
+			<td>{{ row.gearbox }}</td>
+			<td>{{ row.powerPS }}</td>
+			<td>{{ row.model }}</td>
+			<td>{{ row.kilometer}}</td>
+			<td>{{ row.fuelType}}</td>
+			<td>{{ row.brand}}</td>
+			<td>{{ row.age }}</td>
+			<td>{{ row.daysOnEbay }}</td>
+			<td>{{ row.brandModel }}</td>
+			<td>{{ row.vehicleClass }}</td>
+			<td>{{ row.predicted_price | floatformat:2|intcomma}}</td>
+			<td>{{ row.difference | floatformat:2|intcomma}}</td>
 		</tr>
 	{% endfor %}
 </table>

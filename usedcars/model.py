@@ -26,6 +26,12 @@ data = pd.read_csv('./usedcars/data/autos_clean.csv', encoding='latin_1')
 # brandModel,
 # vehicleClass
 
+"""
+Index(['name', 'price', 'vehicleType', 'yearOfRegistration', 'gearbox',
+       'powerPS', 'model', 'kilometer', 'fuelType', 'brand', 'age',
+       'daysOnEbay', 'brandModel', 'vehicleClass'],
+      dtype='object')
+"""
 data = data.dropna(subset=['vehicleType', 'gearbox', 'model', 'fuelType'], how='any')
 data = data[(data.price >= 100) & (data.price <= 50000)]
 data = data[(data.yearOfRegistration >= 1960) & (data.yearOfRegistration <= 2016)]
@@ -81,5 +87,6 @@ def helper(input):
 	filtered_data['predicted_price'] = pred
 	filtered_data['difference'] = filtered_data['price'] - filtered_data['predicted_price']
 	filtered_data.sort_values(by = 'difference', inplace=True)
+	print (filtered_data.columns)
 
 	return filtered_data.to_dict(orient='index')
