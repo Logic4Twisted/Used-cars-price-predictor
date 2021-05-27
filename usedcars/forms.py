@@ -325,11 +325,6 @@ MODEL = (
 (' zafira ',' zafira '),
 )
 
-DAMAGE = (
-	('Unknown', 'Unknown'),
-	('No', 'No'),
-	('Yes', 'Yes'),
-)
 
 class InputForm(forms.Form):
 	fuel_type = forms.ChoiceField(choices=FUEL_TYPE, required=True)
@@ -337,7 +332,6 @@ class InputForm(forms.Form):
 	vehicle_type = forms.ChoiceField(choices=VEHICLE_TYPE, required=True)
 	brand = forms.ChoiceField(choices=BRAND, required=True)
 	model = forms.ChoiceField(choices=MODEL, required=True)
-	damage = forms.ChoiceField(choices=DAMAGE, required=True)
 	year_of_registration = forms.IntegerField(min_value = 1950, max_value=2016)
 	power_ps = forms.IntegerField(min_value=10, max_value = 500)
 	kilometers = forms.IntegerField(required=False)

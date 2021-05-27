@@ -3,24 +3,37 @@ import pandas as pd
 import sklearn 
 import pickle
 
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.feature_extraction import DictVectorizer
 from sklearn import preprocessing
-from sklearn.externals import joblib
+import joblib
+import sys
 
-data = pd.read_csv('./usedcars/data/autos.csv', encoding='latin_1')
-data['notRepairedDamage'].fillna(value='not-specified', inplace=True)
+data = pd.read_csv('./usedcars/data/autos_clean.csv', encoding='latin_1')
+# columns: 
+# name,
+# price,
+# vehicleType,
+# yearOfRegistration,
+# gearbox,
+# powerPS,
+# model,
+# kilometer,
+# fuelType,
+# brand,
+# age,
+# daysOnEbay,
+# brandModel,
+# vehicleClass
+
 data = data.dropna(subset=['vehicleType', 'gearbox', 'model', 'fuelType'], how='any')
 data = data[(data.price >= 100) & (data.price <= 50000)]
 data = data[(data.yearOfRegistration >= 1960) & (data.yearOfRegistration <= 2016)]
 data = data[(data.powerPS >= 10) & (data.powerPS <= 500)]
-data = data[(data.offerType != 'Gesuch') & (data.seller != 'gewerblich')]
-data.drop(['seller', 'offerType'], axis = 1, inplace = True)
-data.drop(['abtest'], axis='columns', inplace=True)
-data.drop('lastSeen', axis=1, inplace=True)
-data.drop('dateCreated', axis=1, inplace=True)
-data.drop('nrOfPictures', axis=1, inplace=True)
-data.drop('dateCrawled', axis=1, inplace=True)
+
 data.dropna(inplace=True)
+
+print(data.columns, file=sys.stderr)
 
 def to_german(word):
 	if word == 'Yes':
@@ -41,8 +54,7 @@ def helper(input):
 		filtered_data = filtered_data[filtered_data['brand'] == input['brand'].strip()]
 	if input['model'] != '---':
 		filtered_data = filtered_data[filtered_data['model'] == input['model'].strip()]
-	if input['damage'] != 'Unknown':
-		filtered_data = filtered_data[filtered_data['notRepairedDamage'] == to_german(input['damage'])]
+
 	filtered_data = filtered_data[filtered_data['yearOfRegistration'] >= input['year_of_registration']]
 	filtered_data = filtered_data[filtered_data['powerPS'] >= input['power_ps']]
 	if str(input['kilometers']) != 'None':
@@ -58,20 +70,16 @@ def helper(input):
 		df.loc[index]['yearOfRegistration'] = row['yearOfRegistration']
 		df.loc[index]['powerPS'] = row['powerPS']
 		df.loc[index]['kilometer'] = row['kilometer']
-		df.loc[index]['monthOfRegistration'] = row['monthOfRegistration']
 		df.loc[index]['brand=' + row['brand']] = 1.0
 		df.loc[index]['fuelType=' + row['fuelType']] = 1.0
 		df.loc[index]['gearbox=' + row['gearbox']] = 1.0
 		df.loc[index]['model=' + row['model']] = 1.0
-		for xx in ['ja', 'nein', 'not-specified']:
-			if to_german(row['notRepairedDamage']) == xx:
-				df.loc[index]['notRepairedDamage='+xx] = 1.0
 		df.loc[index]['vehicleType='+row['vehicleType']] = 1.0
 
 	clf = joblib.load('./usedcars/data/regressor.pkl')
 	pred = clf.predict(df)
 	filtered_data['predicted_price'] = pred
 	filtered_data['difference'] = filtered_data['price'] - filtered_data['predicted_price']
-	filtered_data.sort(['difference'], inplace=True)
+	filtered_data.sort_values(by = 'difference', inplace=True)
 
 	return filtered_data.to_dict(orient='index')

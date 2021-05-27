@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% load humanize %}
 <head>
 <!--	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -13,21 +13,22 @@
 
 <table class="table table-hover">
 	<tr>
-		<th>Name :</th>
-		<th>Price :</th>
-		<th>Vehicle type :</th>
-		<th>Year of registration :</th>
-		<th>Gearbox :</th>
-		<th>Power PS :</th>
-		<th>Model :</th>
-		<th>Kilometer :</th>
-		<th>Month of registration :</th>
-		<th>Fuel type :</th>
-		<th>Brand :</th>
-		<th>Not repaired damage :</th>
-		<th>Postal code :</th>
-		<th>Predicted price :</th>
-		<th>Difference (price - predicted price):</th>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Vehicle type</th>
+		<th>Year of registration</th>
+		<th>Gearbox</th>
+		<th>Power PS</th>
+		<th>Model</th>
+		<th>Kilometer</th>
+		<th>Fuel type</th>
+		<th>Brand</th>
+		<th>Age</th>
+		<th>DaysOnEbay</th>
+		<th>BrandModel</th>
+		<th>VehicleClass</th>
+		<th>Predicted price</th>
+		<th>Difference (price - predicted price)</th>
 	</tr>
 	{% for entry in results.items %}
 		<tr>
