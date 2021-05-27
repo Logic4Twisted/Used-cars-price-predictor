@@ -3,3 +3,4 @@
 **/data
 **/__pycache__
 db.sqlite3
+usedcars/data/
